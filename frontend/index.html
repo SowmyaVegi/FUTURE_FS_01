@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Likitha Sai Sowmya Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <div class="logo">Portfolio</div>
+
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-text">
+
+            <h3>Hi, I'm</h3>
+
+            <h1>Likitha Sai Sowmya</h1>
+
+            <h2>AI & Web Developer</h2>
+
+            <p>
+                I build modern and responsive websites.
+                Passionate about coding and creating amazing
+                digital experiences.
+            </p>
+
+            <!-- Resume Button -->
+            <a href="Resume.pdf" download>
+                <button class="resume-btn">
+                    Download Resume
+                </button>
+            </a>
+
+            <!-- Social Icons -->
+            <div class="social-icons">
+
+                <a href="#" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+                <a href="#" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+
+                <a href="#" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+            <img src="profile.jpg" alt="Profile Photo">
+        </div>
+
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-container">
+
+        <!-- About -->
+        <div class="card" id="about">
+
+            <h2>About Me</h2>
+
+            <p>
+                I am a Computer Science Engineering student
+                passionate about Artificial Intelligence,
+                Machine Learning and Web Development.
+            </p>
+
+        </div>
+
+        <!-- Skills -->
+        <div class="card" id="skills">
+
+            <h2>Skills</h2>
+
+            <div class="skills-list">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Python</span>
+                <span>MongoDB</span>
+                <span>Node.js</span>
+                <span>DSA</span>
+            </div>
+
+        </div>
+
+        <!-- Projects -->
+        <div class="card" id="projects">
+
+            <h2>Projects</h2>
+
+            <p>
+                Portfolio Website
+                <br><br>
+                Hackathon Project
+                <br><br>
+                Student Management System
+            </p>
+
+        </div>
+
+        <!-- Contact -->
+        <div class="card" id="contact">
+
+            <h2>Contact Me</h2>
+
+
+        <form class="contact-form" id="contactForm">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter Your Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter Your Email"
+                required
+            >
+
+            <textarea
+            id="message"
+            placeholder="Write Your Message"
+            rows="3"
+            required
+            ></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+        <p id="successMessage"></p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Likitha Sai Sowmya. All Rights Reserved💜.</p>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        const form = document.getElementById("contactForm");
+
+        form.addEventListener("submit", async function(e){
+
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        try{
+
+            const response = await fetch("/contact", {
+
+                method:"POST",
+
+                headers:{
+                    "Content-Type":"application/json"
+                },
+
+                body:JSON.stringify({
+                    name,
+                    email,
+                    message
+                })
+
+            });
+
+            const data = await response.json();
+
+            document.getElementById("successMessage").innerHTML =
+                data.message;
+
+            document.getElementById("successMessage").style.color =
+                "#00ff99";
+
+            form.reset();
+
+        }
+        catch(error){
+
+            document.getElementById("successMessage").innerHTML =
+            "Error Sending Message";
+
+            document.getElementById("successMessage").style.color =
+            "red";
+    }
+
+});
+</script>
+
+</body>
+</html>
